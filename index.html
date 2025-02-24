@@ -3,9 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>郭论1</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        audio {
+            margin: 20px 0;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            width: 90%;
+            max-width: 600px;
+        }
+        li {
+            cursor: pointer;
+            padding: 16px; /* Increased line spacing */
+            border-bottom: 1px solid #ccc;
+            background-color: #fff;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        li:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
 </head>
 <body>
-    guolun
+    <h3>郭论一</h3>
+    <audio id="audioPlayer" controls></audio>
+    <ul id="playlist"></ul>
+
+    <script>
+        fetch('guolunList.json')
+            .then(response => response.json())
+            .then(data => {
+                const playlist = document.getElementById('playlist');
+                data.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = item;
+                    li.addEventListener('click', () => {
+                        const audioPlayer = document.getElementById('audioPlayer');
+                        audioPlayer.src = `https://jasonbai008.github.io/asset7/mp3/${item}.mp3`;
+                        audioPlayer.play();
+                    });
+                    playlist.appendChild(li);
+                });
+            })
+            .catch(error => console.error('Error loading the playlist:', error));
+    </script>
 </body>
 </html>
