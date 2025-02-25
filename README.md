@@ -1,6 +1,6 @@
-# 郭论音频播放器
+# Guo Lun 有声书
 
-这是一个基于 HTML5 和 JavaScript 实现的音频播放器，播放`Guo Lun`第一部音频。
+`Guo Lun`第一部，有声书
 
 ## 主要功能
 
