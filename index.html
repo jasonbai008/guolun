@@ -153,6 +153,17 @@
       // 定义本地存储的key
       const STORAGE_KEY = "guolun_player_state";
 
+      // 双击标题滚动到正在播放的项
+      title.addEventListener("dblclick", () => {
+        const playingItem = playlist.querySelector(".playing");
+        if (playingItem) {
+          playingItem.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          });
+        }
+      });
+
       // 定义获取资源路径的函数
       function getPath(index) {
         if (index <= 49) return "asset7";
