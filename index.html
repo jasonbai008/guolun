@@ -115,6 +115,28 @@
           height: 20px;
         }
       }
+
+      /* 三角形播放图标 */
+      .play-icon {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: none;
+        width: 0;
+        height: 0;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-left: 16px solid #1a73e8;
+      }
+
+      li.paused .play-icon {
+        display: block;
+      }
+
+      li.paused .playing-icon {
+        display: none;
+      }
     </style>
   </head>
   <body>
@@ -142,11 +164,17 @@
       function updatePlayingState(playingLi) {
         // 移除所有正在播放的状态
         const playingItems = playlist.querySelectorAll(".playing");
-        playingItems.forEach((item) => item.classList.remove("playing"));
+        playingItems.forEach((item) => {
+          item.classList.remove("playing");
+          item.classList.remove("paused");
+        });
 
         // 添加当前播放项的状态
         if (playingLi) {
           playingLi.classList.add("playing");
+          if (audioPlayer.paused) {
+            playingLi.classList.add("paused");
+          }
         }
       }
 
@@ -180,7 +208,22 @@
         const target = e.target;
         if (target.tagName === "LI") {
           const index = Array.from(playlist.children).indexOf(target);
-          playAudio(target.textContent, index);
+
+          // 如果点击的是正在播放的项
+          if (target.classList.contains("playing")) {
+            if (audioPlayer.paused) {
+              // 如果当前是暂停状态，继续播放
+              audioPlayer.play();
+              target.classList.remove("paused");
+            } else {
+              // 如果当前是播放状态，暂停
+              audioPlayer.pause();
+              target.classList.add("paused");
+            }
+          } else {
+            // 如果点击的是其他项，播放新的音频
+            playAudio(target.textContent, index);
+          }
         }
       });
 
@@ -190,6 +233,22 @@
         if (playingItem) {
           const index = Array.from(playlist.children).indexOf(playingItem);
           savePlayerState(playingItem.textContent, index);
+        }
+      });
+
+      // 音频播放时更新状态
+      audioPlayer.addEventListener("play", () => {
+        const playingItem = playlist.querySelector(".playing");
+        if (playingItem) {
+          playingItem.classList.remove("paused");
+        }
+      });
+
+      // 音频暂停时更新状态
+      audioPlayer.addEventListener("pause", () => {
+        const playingItem = playlist.querySelector(".playing");
+        if (playingItem) {
+          playingItem.classList.add("paused");
         }
       });
 
@@ -206,6 +265,11 @@
           playingIcon.appendChild(span);
         }
         li.appendChild(playingIcon);
+
+        // 添加三角形播放图标
+        const playIcon = document.createElement("div");
+        playIcon.className = "play-icon";
+        li.appendChild(playIcon);
 
         return li;
       }
