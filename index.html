@@ -26,6 +26,51 @@
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
       }
 
+      /* 自动播放开关样式 */
+      .auto-play-toggle {
+        position: fixed;
+        right: 20px;
+        top: 20px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .auto-play-toggle .switch {
+        position: relative;
+        width: 40px;
+        height: 20px;
+        background-color: #ccc;
+        border-radius: 20px;
+        transition: background-color 0.3s ease;
+      }
+
+      .auto-play-toggle .switch::before {
+        content: '';
+        position: absolute;
+        left: 2px;
+        top: 2px;
+        width: 16px;
+        height: 16px;
+        background-color: white;
+        border-radius: 50%;
+        transition: transform 0.3s ease;
+      }
+
+      .auto-play-toggle.active .switch {
+        background-color: #1a73e8;
+      }
+
+      .auto-play-toggle.active .switch::before {
+        transform: translateX(20px);
+      }
+
+      .auto-play-toggle .label {
+        margin-left: 8px;
+        font-size: 14px;
+        color: #666;
+      }
+
       /* 音频播放器样式优化 */
       audio {
         margin: 20px;
@@ -141,6 +186,9 @@
   </head>
   <body>
     <h3 id="title">郭论</h3>
+    <div class="auto-play-toggle">
+      <div class="switch"></div>
+    </div>
     <audio id="audioPlayer" controls></audio>
     <ul id="playlist"></ul>
 
@@ -152,6 +200,33 @@
 
       // 定义本地存储的key
       const STORAGE_KEY = "guolun_player_state";
+
+      // 自动播放状态
+      let autoPlayEnabled = false;
+
+      // 获取开关元素
+      const autoPlayToggle = document.querySelector('.auto-play-toggle');
+
+      // 切换自动播放状态
+      autoPlayToggle.addEventListener('click', () => {
+        autoPlayEnabled = !autoPlayEnabled;
+        autoPlayToggle.classList.toggle('active', autoPlayEnabled);
+        if (autoPlayEnabled) alert('连续播放已开启');
+      });
+
+      // 监听音频结束事件
+      audioPlayer.addEventListener('ended', () => {
+        if (autoPlayEnabled) {
+          const currentItem = playlist.querySelector('.playing');
+          if (currentItem) {
+            const nextItem = currentItem.nextElementSibling;
+            if (nextItem) {
+              const index = Array.from(playlist.children).indexOf(nextItem);
+              playAudio(nextItem.textContent, index);
+            }
+          }
+        }
+      });
 
       // 双击标题滚动到正在播放的项
       title.addEventListener("dblclick", () => {
