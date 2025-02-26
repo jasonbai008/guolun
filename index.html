@@ -20,11 +20,12 @@
     /* 标题样式优化 */
     #title {
       margin: 46px auto 20px;
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 600;
       letter-spacing: 2px;
       color: #1a73e8;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+      text-align: center;
     }
 
     /* 自动播放开关样式 */
@@ -102,6 +103,9 @@
       transition: all 0.3s ease;
       position: relative;
       border: 1px solid rgba(0, 0, 0, 0.05);
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
     }
 
     li:hover {
@@ -152,6 +156,7 @@
     }
 
     @keyframes wave {
+
       0%,
       100% {
         height: 8px;
@@ -203,48 +208,48 @@
         this.playlist = document.getElementById("playlist");
         this.title = document.getElementById("title");
         this.autoPlayToggle = document.querySelector('.auto-play-toggle');
-        
+
         // 定义本地存储的key
         this.STORAGE_KEY = "guolun_player_state";
-        
+
         // 自动播放状态
         this.autoPlayEnabled = false;
-        
+
         // 初始化事件监听
         this.initEventListeners();
       }
-      
+
       // 初始化所有事件监听器
       initEventListeners() {
         // 切换自动播放状态
         this.autoPlayToggle.addEventListener('click', () => this.toggleAutoPlay());
-        
+
         // 监听音频结束事件
         this.audioPlayer.addEventListener('ended', () => this.handleAudioEnded());
-        
+
         // 双击标题滚动到正在播放的项
         this.title.addEventListener("dblclick", () => this.scrollToPlaying());
-        
+
         // 使用事件代理绑定点击事件
         this.playlist.addEventListener("click", (e) => this.handlePlaylistClick(e));
-        
+
         // 音频播放进度更新时保存状态
         this.audioPlayer.addEventListener("timeupdate", () => this.saveCurrentState());
-        
+
         // 音频播放时更新状态
         this.audioPlayer.addEventListener("play", () => this.updatePlayPauseState());
-        
+
         // 音频暂停时更新状态
         this.audioPlayer.addEventListener("pause", () => this.updatePlayPauseState());
       }
-      
+
       // 切换自动播放状态
       toggleAutoPlay() {
         this.autoPlayEnabled = !this.autoPlayEnabled;
         this.autoPlayToggle.classList.toggle('active', this.autoPlayEnabled);
         if (this.autoPlayEnabled) alert('连续播放已开启');
       }
-      
+
       // 处理音频播放结束事件
       handleAudioEnded() {
         if (this.autoPlayEnabled) {
@@ -258,7 +263,7 @@
           }
         }
       }
-      
+
       // 滚动到当前正在播放的条目
       scrollToPlaying() {
         const playingItem = this.playlist.querySelector(".playing");
@@ -269,16 +274,16 @@
           });
         }
       }
-      
+
       // 定义获取资源路径的函数
       getPath(index) {
         if (index <= 49) return "asset7";
         if (index <= 100) return "asset8";
-        if (index <= 153) return "asset9";
-        if (index <= 200) return "asset10";
+        if (index <= 152) return "asset9";
+        if (index <= 199) return "asset10";
         return "asset11";
       }
-      
+
       // 更新播放状态样式
       updatePlayingState(playingLi) {
         // 移除所有正在播放的状态
@@ -287,7 +292,7 @@
           item.classList.remove("playing");
           item.classList.remove("paused");
         });
-        
+
         // 添加当前播放项的状态
         if (playingLi) {
           playingLi.classList.add("playing");
@@ -296,7 +301,7 @@
           }
         }
       }
-      
+
       // 更新播放/暂停状态
       updatePlayPauseState() {
         const playingItem = this.playlist.querySelector(".playing");
@@ -304,7 +309,7 @@
           playingItem.classList.toggle("paused", this.audioPlayer.paused);
         }
       }
-      
+
       // 保存播放状态到localStorage
       savePlayerState(itemText, index) {
         const state = {
@@ -314,7 +319,7 @@
         };
         localStorage.setItem(this.STORAGE_KEY, JSON.stringify(state));
       }
-      
+
       // 保存当前播放状态
       saveCurrentState() {
         const playingItem = this.playlist.querySelector(".playing");
@@ -323,7 +328,7 @@
           this.savePlayerState(playingItem.textContent, index);
         }
       }
-      
+
       // 播放音频的函数
       playAudio(itemText, index, startTime = 0) {
         const path = this.getPath(index);
@@ -331,21 +336,21 @@
         this.audioPlayer.src = `https://jasonbai008.github.io/${path}/mp3/${itemText}.mp3`;
         this.audioPlayer.currentTime = startTime;
         this.audioPlayer.play();
-        
+
         // 更新播放状态样式
         this.updatePlayingState(this.playlist.children[index]);
-        
+
         // 保存播放状态
         this.savePlayerState(itemText, index);
       }
-      
+
       // 处理播放列表点击事件
       handlePlaylistClick(e) {
         const target = e.target.closest('li'); // 使用closest更可靠地获取li元素
         if (!target) return;
-        
+
         const index = Array.from(this.playlist.children).indexOf(target);
-        
+
         // 如果点击的是正在播放的项
         if (target.classList.contains("playing")) {
           if (this.audioPlayer.paused) {
@@ -360,12 +365,12 @@
           this.playAudio(target.textContent, index);
         }
       }
-      
+
       // 创建列表项
       createListItem(item) {
         const li = document.createElement("li");
         li.textContent = item;
-        
+
         // 添加播放动画图标
         const playingIcon = document.createElement("div");
         playingIcon.className = "playing-icon";
@@ -374,15 +379,15 @@
           playingIcon.appendChild(span);
         }
         li.appendChild(playingIcon);
-        
+
         // 添加三角形播放图标
         const playIcon = document.createElement("div");
         playIcon.className = "play-icon";
         li.appendChild(playIcon);
-        
+
         return li;
       }
-      
+
       // 初始化播放列表
       async initPlaylist() {
         try {
@@ -390,22 +395,22 @@
           const response = await fetch("guolunList.json", {
             cache: "no-cache" // 确保获取最新数据
           });
-          
+
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
-          
+
           const data = await response.json();
-          
+
           // 使用文档片段提高性能
           const fragment = document.createDocumentFragment();
           data.forEach((item) => {
             const li = this.createListItem(item);
             fragment.appendChild(li);
           });
-          
+
           this.playlist.appendChild(fragment);
-          
+
           // 恢复上次播放状态或播放第一个音频
           this.restorePlayerState(data);
         } catch (error) {
@@ -413,7 +418,7 @@
           this.showError("加载播放列表失败，请刷新页面重试");
         }
       }
-      
+
       // 恢复播放器状态
       restorePlayerState(data) {
         const savedState = localStorage.getItem(this.STORAGE_KEY);
@@ -434,7 +439,7 @@
           this.playAudio(data[0], 0);
         }
       }
-      
+
       // 显示错误信息
       showError(message) {
         const errorDiv = document.createElement('div');
