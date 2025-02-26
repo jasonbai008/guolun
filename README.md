@@ -1,6 +1,7 @@
-# Guo Lun 有声书
+# Guo Lun
 
-`Guo Lun`第一部，有声书
+- `Guo Lun 1` 153集
+- `Guo Lun 2` 98集
 
 ## 主要功能
 
