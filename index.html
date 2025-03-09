@@ -31,94 +31,54 @@
     /* 分享按钮样式 */
     .share-button {
       position: fixed;
-      left: 10px;
+      left: 20px;
       top: 10px;
       width: 36px;
       height: 36px;
-      background-color: #1a73e8;
-      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       transition: all 0.3s ease;
     }
 
     .share-button:hover {
       transform: scale(1.1);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     }
 
     .share-button svg {
-      width: 20px;
-      height: 20px;
-      fill: white;
-    }
-
-    /* 分享成功提示 */
-    .share-toast {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: rgba(0, 0, 0, 0.8);
-      color: white;
-      padding: 10px 20px;
-      border-radius: 20px;
-      font-size: 14px;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      pointer-events: none;
-    }
-
-    .share-toast.show {
-      opacity: 1;
+      width: 26px;
+      height: 26px;
+      fill: #1a73e8;
     }
 
     /* 自动播放开关样式 */
     .auto-play-toggle {
       position: fixed;
       right: 20px;
-      top: 20px;
+      top: 10px;
       display: flex;
       align-items: center;
       cursor: pointer;
+      transition: all 0.3s ease;
     }
 
-    .auto-play-toggle .switch {
-      position: relative;
-      width: 40px;
-      height: 20px;
-      background-color: #ccc;
-      border-radius: 20px;
-      transition: background-color 0.3s ease;
+    .auto-play-toggle:hover {
+      transform: scale(1.1);
     }
 
-    .auto-play-toggle .switch::before {
-      content: '';
-      position: absolute;
-      left: 2px;
-      top: 2px;
-      width: 16px;
-      height: 16px;
-      background-color: white;
-      border-radius: 50%;
-      transition: transform 0.3s ease;
+    .auto-play-toggle svg {
+      width: 24px;
+      height: 24px;
     }
 
-    .auto-play-toggle.active .switch {
-      background-color: #1a73e8;
+    .auto-play-toggle svg path {
+      fill: #777;
+      transition: fill 0.3s ease;
     }
 
-    .auto-play-toggle.active .switch::before {
-      transform: translateX(20px);
-    }
-
-    .auto-play-toggle .label {
-      margin-left: 8px;
-      font-size: 14px;
-      color: #666;
+    .auto-play-toggle.active svg path {
+      fill: #1a73e8;
     }
 
     /* 音频播放器样式优化 */
@@ -241,15 +201,13 @@
 <body>
   <!-- 分享按钮 -->
   <div class="share-button">
-    <svg viewBox="0 0 24 24">
+    <svg viewBox="0 0 26 26">
       <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/>
     </svg>
   </div>
-  <!-- 分享成功提示 -->
-  <div class="share-toast">链接已复制到剪贴板</div>
   <h3 id="title">郭论</h3>
   <div class="auto-play-toggle">
-    <div class="switch"></div>
+    <svg t="1741485749184" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="10552" width="26" height="26"><path d="M579.2521816 247.11318148H78.76578497c-29.93806795 0-54.23563036-24.29756238-54.23563032-54.2356303s24.29756238-54.23563036 54.23563032-54.23563031H579.2521816c29.93806795 0 54.23563036 24.29756238 54.2356303 54.23563031s-24.29756238 54.23563036-54.2356303 54.2356303zM579.2521816 572.31002093H78.76578497c-29.93806795 0-54.23563036-24.29756238-54.23563032-54.23563034s24.29756238-54.23563036 54.23563032-54.23563031H579.2521816c29.93806795 0 54.23563036 24.29756238 54.2356303 54.23563031-0.21694254 29.93806795-24.29756238 54.23563036-54.2356303 54.23563034zM579.2521816 897.28991781H78.76578497c-29.93806795 0-54.23563036-24.29756238-54.23563032-54.23563031s24.29756238-54.23563036 54.23563032-54.23563029H579.2521816c29.93806795 0 54.23563036 24.29756238 54.2356303 54.23563029s-24.29756238 54.23563036-54.2356303 54.23563031zM801.18438091 945.88504257c-8.89464336 0-18.00622928-2.16942518-26.03310255-6.72521813-17.35540171-9.54547094-27.98558523-27.76864271-27.98558526-47.51041217V143.41465631c0-29.93806795 24.29756238-54.23563036 54.23563029-54.23563033s54.23563036 24.29756238 54.23563034 54.23563033v649.95979382l67.0352391-42.30379163c25.16533248-15.83680407 58.79142329-8.46075833 74.84516983 16.92151663 16.05374657 25.38227498 8.46075833 58.79142329-16.92151667 74.84516984l-150.12422473 94.8038818c-9.11158592 5.42356305-19.30788439 8.24381582-29.28724035 8.2438158z" fill="#acb8cc" p-id="10553"></path></svg>
   </div>
   <audio id="audioPlayer" controls></audio>
   <ul id="playlist"></ul>
@@ -264,7 +222,6 @@
         this.title = document.getElementById("title");
         this.autoPlayToggle = document.querySelector('.auto-play-toggle');
         this.shareButton = document.querySelector('.share-button');
-        this.shareToast = document.querySelector('.share-toast');
 
         // 定义本地存储的key
         this.STORAGE_KEY = "guolun_player_state";
@@ -457,11 +414,7 @@
           
           // 复制链接到剪贴板
           navigator.clipboard.writeText(shareUrl).then(() => {
-            // 显示提示
-            this.shareToast.classList.add('show');
-            setTimeout(() => {
-              this.shareToast.classList.remove('show');
-            }, 2000);
+            alert('链接已复制到剪贴板: ' + shareUrl);
           }).catch(err => {
             console.error('复制失败:', err);
           });
