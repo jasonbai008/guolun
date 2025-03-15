@@ -1,513 +1,535 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>郭论1·郭德纲品俗文化史</title>
-  <style>
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #ecf0f1;
-      color: #2c3e50;
-    }
-
-    /* 标题样式优化 */
-    #title {
-      margin: 46px auto 20px;
-      font-size: 22px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      color: #1a73e8;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-      text-align: center;
-    }
-
-    /* 分享按钮样式 */
-    .share-button {
-      position: fixed;
-      left: 20px;
-      top: 10px;
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .share-button:hover {
-      transform: scale(1.1);
-    }
-
-    .share-button svg {
-      width: 26px;
-      height: 26px;
-      fill: #1a73e8;
-    }
-
-    /* 自动播放开关样式 */
-    .auto-play-toggle {
-      position: fixed;
-      right: 20px;
-      top: 10px;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .auto-play-toggle:hover {
-      transform: scale(1.1);
-    }
-
-    .auto-play-toggle svg {
-      width: 24px;
-      height: 24px;
-    }
-
-    .auto-play-toggle svg path {
-      fill: #777;
-      transition: fill 0.3s ease;
-    }
-
-    .auto-play-toggle.active svg path {
-      fill: #1a73e8;
-    }
-
-    /* 音频播放器样式优化 */
-    audio {
-      margin: 0px auto;
-      display: block;
-      width: calc(100% - 40px);
-      max-width: 600px;
-      border-radius: 12px;
-    }
-
-    /* 列表容器样式优化 */
-    ul {
-      list-style-type: none;
-      padding: 0;
-      width: 90%;
-      max-width: 600px;
-      height: calc(100vh - 210px);
-      overflow-y: auto;
-    }
-
-    /* 列表项样式优化 */
-    li {
-      cursor: pointer;
-      padding: 16px 20px;
-      margin-bottom: 8px;
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-      transition: all 0.3s ease;
-      position: relative;
-      border: 1px solid rgba(0, 0, 0, 0.05);
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-
-    li:hover {
-      background-color: #f5f7fa;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
-    }
-
-    /* 正在播放项的样式 */
-    li.playing {
-      background-color: #e8f0fe;
-      border-color: #1a73e8;
-      padding-right: 50px;
-    }
-
-    /* 播放动画图标 */
-    .playing-icon {
-      position: absolute;
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      display: none;
-      height: 20px;
-      align-items: center;
-    }
-
-    li.playing .playing-icon {
-      display: flex;
-    }
-
-    /* 音频波形动画 */
-    .playing-icon span {
-      display: inline-block;
-      width: 3px;
-      height: 100%;
-      margin-right: 3px;
-      background-color: #1a73e8;
-      border-radius: 3px;
-      animation: wave 1s ease-in-out infinite;
-    }
-
-    .playing-icon span:nth-child(2) {
-      animation-delay: 0.2s;
-    }
-
-    .playing-icon span:nth-child(3) {
-      animation-delay: 0.4s;
-    }
-
-    @keyframes wave {
-      0%,
-      100% {
-        height: 8px;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>郭论1·郭德纲品俗文化史</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #ecf0f1;
+        color: #2c3e50;
       }
 
-      50% {
+      /* 标题样式优化 */
+      #title {
+        margin: 55px 20px 20px;
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        color: #1a73e8;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      /* 分享按钮样式 */
+      .share-button {
+        position: fixed;
+        left: 20px;
+        top: 10px;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .share-button:hover {
+        transform: scale(1.1);
+      }
+
+      .share-button svg {
+        width: 26px;
+        height: 26px;
+        fill: #1a73e8;
+      }
+
+      /* 自动播放开关样式 */
+      .auto-play-toggle {
+        position: fixed;
+        right: 20px;
+        top: 10px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .auto-play-toggle:hover {
+        transform: scale(1.1);
+      }
+
+      .auto-play-toggle svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .auto-play-toggle svg path {
+        fill: #777;
+        transition: fill 0.3s ease;
+      }
+
+      .auto-play-toggle.active svg path {
+        fill: #1a73e8;
+      }
+
+      /* 音频播放器样式优化 */
+      audio {
+        margin: 0px auto;
+        display: block;
+        width: calc(100% - 40px);
+        max-width: 600px;
+        border-radius: 12px;
+      }
+
+      /* 列表容器样式优化 */
+      ul {
+        list-style-type: none;
+        padding: 0;
+        width: 90%;
+        max-width: 600px;
+        height: calc(100vh - 210px);
+        overflow-y: auto;
+      }
+
+      /* 列表项样式优化 */
+      li {
+        cursor: pointer;
+        padding: 16px 20px;
+        margin-bottom: 8px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        position: relative;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
+      li:hover {
+        background-color: #f5f7fa;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+      }
+
+      /* 正在播放项的样式 */
+      li.playing {
+        background-color: #e8f0fe;
+        border-color: #1a73e8;
+        padding-right: 50px;
+      }
+
+      /* 播放动画图标 */
+      .playing-icon {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: none;
         height: 20px;
-      }
-    }
-
-    /* 三角形播放图标 */
-    .play-icon {
-      position: absolute;
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      display: none;
-      width: 0;
-      height: 0;
-      border-top: 10px solid transparent;
-      border-bottom: 10px solid transparent;
-      border-left: 16px solid #1a73e8;
-    }
-
-    li.paused .play-icon {
-      display: block;
-    }
-
-    li.paused .playing-icon {
-      display: none;
-    }
-  </style>
-</head>
-
-<body>
-  <!-- 分享按钮 -->
-  <div class="share-button">
-    <svg viewBox="0 0 26 26">
-      <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/>
-    </svg>
-  </div>
-  <h3 id="title">郭论</h3>
-  <div class="auto-play-toggle">
-    <svg t="1741485749184" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="10552" width="26" height="26"><path d="M579.2521816 247.11318148H78.76578497c-29.93806795 0-54.23563036-24.29756238-54.23563032-54.2356303s24.29756238-54.23563036 54.23563032-54.23563031H579.2521816c29.93806795 0 54.23563036 24.29756238 54.2356303 54.23563031s-24.29756238 54.23563036-54.2356303 54.2356303zM579.2521816 572.31002093H78.76578497c-29.93806795 0-54.23563036-24.29756238-54.23563032-54.23563034s24.29756238-54.23563036 54.23563032-54.23563031H579.2521816c29.93806795 0 54.23563036 24.29756238 54.2356303 54.23563031-0.21694254 29.93806795-24.29756238 54.23563036-54.2356303 54.23563034zM579.2521816 897.28991781H78.76578497c-29.93806795 0-54.23563036-24.29756238-54.23563032-54.23563031s24.29756238-54.23563036 54.23563032-54.23563029H579.2521816c29.93806795 0 54.23563036 24.29756238 54.2356303 54.23563029s-24.29756238 54.23563036-54.2356303 54.23563031zM801.18438091 945.88504257c-8.89464336 0-18.00622928-2.16942518-26.03310255-6.72521813-17.35540171-9.54547094-27.98558523-27.76864271-27.98558526-47.51041217V143.41465631c0-29.93806795 24.29756238-54.23563036 54.23563029-54.23563033s54.23563036 24.29756238 54.23563034 54.23563033v649.95979382l67.0352391-42.30379163c25.16533248-15.83680407 58.79142329-8.46075833 74.84516983 16.92151663 16.05374657 25.38227498 8.46075833 58.79142329-16.92151667 74.84516984l-150.12422473 94.8038818c-9.11158592 5.42356305-19.30788439 8.24381582-29.28724035 8.2438158z" fill="#acb8cc" p-id="10553"></path></svg>
-  </div>
-  <audio id="audioPlayer" controls></audio>
-  <ul id="playlist"></ul>
-
-  <script>
-    // 音频播放器类 - 封装播放器相关功能
-    class AudioManager {
-      constructor() {
-        // 获取DOM元素
-        this.audioPlayer = document.getElementById("audioPlayer");
-        this.playlist = document.getElementById("playlist");
-        this.title = document.getElementById("title");
-        this.autoPlayToggle = document.querySelector('.auto-play-toggle');
-        this.shareButton = document.querySelector('.share-button');
-
-        // 定义本地存储的key
-        this.STORAGE_KEY = "guolun_player_state";
-
-        // 自动播放状态
-        this.autoPlayEnabled = false;
-
-        // 初始化事件监听
-        this.initEventListeners();
+        align-items: center;
       }
 
-      // 初始化所有事件监听器
-      initEventListeners() {
+      li.playing .playing-icon {
+        display: flex;
+      }
+
+      /* 音频波形动画 */
+      .playing-icon span {
+        display: inline-block;
+        width: 3px;
+        height: 100%;
+        margin-right: 3px;
+        background-color: #1a73e8;
+        border-radius: 3px;
+        animation: wave 1s ease-in-out infinite;
+      }
+
+      .playing-icon span:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+
+      .playing-icon span:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+
+      @keyframes wave {
+        0%,
+        100% {
+          height: 8px;
+        }
+
+        50% {
+          height: 20px;
+        }
+      }
+
+      /* 三角形播放图标 */
+      .play-icon {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: none;
+        width: 0;
+        height: 0;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-left: 16px solid #1a73e8;
+      }
+
+      li.paused .play-icon {
+        display: block;
+      }
+
+      li.paused .playing-icon {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 分享按钮 -->
+    <div class="share-button">
+      <svg viewBox="0 0 26 26">
+        <path
+          d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"
+        />
+      </svg>
+    </div>
+    <h3 id="title">郭论</h3>
+    <div class="auto-play-toggle">
+      <svg t="1741485749184" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="10552" width="26" height="26">
+        <path
+          d="M579.2521816 247.11318148H78.76578497c-29.93806795 0-54.23563036-24.29756238-54.23563032-54.2356303s24.29756238-54.23563036 54.23563032-54.23563031H579.2521816c29.93806795 0 54.23563036 24.29756238 54.2356303 54.23563031s-24.29756238 54.23563036-54.2356303 54.2356303zM579.2521816 572.31002093H78.76578497c-29.93806795 0-54.23563036-24.29756238-54.23563032-54.23563034s24.29756238-54.23563036 54.23563032-54.23563031H579.2521816c29.93806795 0 54.23563036 24.29756238 54.2356303 54.23563031-0.21694254 29.93806795-24.29756238 54.23563036-54.2356303 54.23563034zM579.2521816 897.28991781H78.76578497c-29.93806795 0-54.23563036-24.29756238-54.23563032-54.23563031s24.29756238-54.23563036 54.23563032-54.23563029H579.2521816c29.93806795 0 54.23563036 24.29756238 54.2356303 54.23563029s-24.29756238 54.23563036-54.2356303 54.23563031zM801.18438091 945.88504257c-8.89464336 0-18.00622928-2.16942518-26.03310255-6.72521813-17.35540171-9.54547094-27.98558523-27.76864271-27.98558526-47.51041217V143.41465631c0-29.93806795 24.29756238-54.23563036 54.23563029-54.23563033s54.23563036 24.29756238 54.23563034 54.23563033v649.95979382l67.0352391-42.30379163c25.16533248-15.83680407 58.79142329-8.46075833 74.84516983 16.92151663 16.05374657 25.38227498 8.46075833 58.79142329-16.92151667 74.84516984l-150.12422473 94.8038818c-9.11158592 5.42356305-19.30788439 8.24381582-29.28724035 8.2438158z"
+          fill="#acb8cc"
+          p-id="10553"
+        ></path>
+      </svg>
+    </div>
+    <audio id="audioPlayer" controls></audio>
+    <ul id="playlist"></ul>
+
+    <script>
+      // 音频播放器类 - 封装播放器相关功能
+      class AudioManager {
+        constructor() {
+          // 获取DOM元素
+          this.audioPlayer = document.getElementById("audioPlayer");
+          this.playlist = document.getElementById("playlist");
+          this.title = document.getElementById("title");
+          this.autoPlayToggle = document.querySelector(".auto-play-toggle");
+          this.shareButton = document.querySelector(".share-button");
+
+          // 定义本地存储的key
+          this.STORAGE_KEY = "guolun_player_state";
+
+          // 自动播放状态
+          this.autoPlayEnabled = false;
+
+          // 初始化事件监听
+          this.initEventListeners();
+        }
+
+        // 初始化所有事件监听器
+        initEventListeners() {
+          // 切换自动播放状态
+          this.autoPlayToggle.addEventListener("click", () => this.toggleAutoPlay());
+
+          // 监听音频结束事件
+          this.audioPlayer.addEventListener("ended", () => this.handleAudioEnded());
+
+          // 双击标题滚动到正在播放的项
+          this.title.addEventListener("dblclick", () => this.scrollToPlaying());
+
+          // 使用事件代理绑定点击事件
+          this.playlist.addEventListener("click", (e) => this.handlePlaylistClick(e));
+
+          // 音频播放进度更新时保存状态
+          this.audioPlayer.addEventListener("timeupdate", () => this.saveCurrentState());
+
+          // 音频播放时更新状态
+          this.audioPlayer.addEventListener("play", () => this.updatePlayPauseState());
+
+          // 音频暂停时更新状态
+          this.audioPlayer.addEventListener("pause", () => this.updatePlayPauseState());
+
+          // 分享按钮点击事件
+          this.shareButton.addEventListener("click", () => this.handleShare());
+        }
+
         // 切换自动播放状态
-        this.autoPlayToggle.addEventListener('click', () => this.toggleAutoPlay());
+        toggleAutoPlay() {
+          this.autoPlayEnabled = !this.autoPlayEnabled;
+          this.autoPlayToggle.classList.toggle("active", this.autoPlayEnabled);
+          if (this.autoPlayEnabled) alert("连续播放已开启");
+        }
 
-        // 监听音频结束事件
-        this.audioPlayer.addEventListener('ended', () => this.handleAudioEnded());
-
-        // 双击标题滚动到正在播放的项
-        this.title.addEventListener("dblclick", () => this.scrollToPlaying());
-
-        // 使用事件代理绑定点击事件
-        this.playlist.addEventListener("click", (e) => this.handlePlaylistClick(e));
-
-        // 音频播放进度更新时保存状态
-        this.audioPlayer.addEventListener("timeupdate", () => this.saveCurrentState());
-
-        // 音频播放时更新状态
-        this.audioPlayer.addEventListener("play", () => this.updatePlayPauseState());
-
-        // 音频暂停时更新状态
-        this.audioPlayer.addEventListener("pause", () => this.updatePlayPauseState());
-
-        // 分享按钮点击事件
-        this.shareButton.addEventListener('click', () => this.handleShare());
-      }
-
-      // 切换自动播放状态
-      toggleAutoPlay() {
-        this.autoPlayEnabled = !this.autoPlayEnabled;
-        this.autoPlayToggle.classList.toggle('active', this.autoPlayEnabled);
-        if (this.autoPlayEnabled) alert('连续播放已开启');
-      }
-
-      // 处理音频播放结束事件
-      handleAudioEnded() {
-        if (this.autoPlayEnabled) {
-          const currentItem = this.playlist.querySelector('.playing');
-          if (currentItem) {
-            const nextItem = currentItem.nextElementSibling;
-            if (nextItem) {
-              const index = Array.from(this.playlist.children).indexOf(nextItem);
-              this.playAudio(nextItem.textContent, index);
+        // 处理音频播放结束事件
+        handleAudioEnded() {
+          if (this.autoPlayEnabled) {
+            const currentItem = this.playlist.querySelector(".playing");
+            if (currentItem) {
+              const nextItem = currentItem.nextElementSibling;
+              if (nextItem) {
+                const index = Array.from(this.playlist.children).indexOf(nextItem);
+                this.playAudio(nextItem.textContent, nextItem.dataset.val, index);
+              }
             }
           }
         }
-      }
 
-      // 滚动到当前正在播放的条目
-      scrollToPlaying() {
-        const playingItem = this.playlist.querySelector(".playing");
-        if (playingItem) {
-          playingItem.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-          });
-        }
-      }
-
-      // 定义获取资源路径的函数
-      getPath(index) {
-        if (index <= 49) return "asset7";
-        if (index <= 99) return "asset8";
-        if (index <= 152) return "asset9";
-        if (index <= 199) return "asset10";
-        return "asset11";
-      }
-
-      // 更新播放状态样式
-      updatePlayingState(playingLi) {
-        // 移除所有正在播放的状态
-        const playingItems = this.playlist.querySelectorAll(".playing");
-        playingItems.forEach((item) => {
-          item.classList.remove("playing");
-          item.classList.remove("paused");
-        });
-
-        // 添加当前播放项的状态
-        if (playingLi) {
-          playingLi.classList.add("playing");
-          if (this.audioPlayer.paused) {
-            playingLi.classList.add("paused");
+        // 滚动到当前正在播放的条目
+        scrollToPlaying() {
+          const playingItem = this.playlist.querySelector(".playing");
+          if (playingItem) {
+            playingItem.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
           }
         }
-      }
 
-      // 更新播放/暂停状态
-      updatePlayPauseState() {
-        const playingItem = this.playlist.querySelector(".playing");
-        if (playingItem) {
-          playingItem.classList.toggle("paused", this.audioPlayer.paused);
+        // 定义获取资源路径的函数
+        getPath(index) {
+          if (index <= 49) return "asset7";
+          if (index <= 99) return "asset8";
+          if (index <= 152) return "asset9";
+          if (index <= 199) return "asset10";
+          return "asset11";
         }
-      }
-
-      // 保存播放状态到localStorage
-      savePlayerState(itemText, index) {
-        const state = {
-          title: itemText,
-          index: index,
-          currentTime: this.audioPlayer.currentTime,
-        };
-        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(state));
-      }
-
-      // 保存当前播放状态
-      saveCurrentState() {
-        const playingItem = this.playlist.querySelector(".playing");
-        if (playingItem) {
-          const index = Array.from(this.playlist.children).indexOf(playingItem);
-          this.savePlayerState(playingItem.textContent, index);
-        }
-      }
-
-      // 播放音频的函数
-      playAudio(itemText, index, startTime = 0) {
-        const path = this.getPath(index);
-        this.title.textContent = itemText;
-        this.audioPlayer.src = `https://jasonbai008.github.io/${path}/mp3/${itemText}.mp3`;
-        this.audioPlayer.currentTime = startTime;
-        this.audioPlayer.play();
 
         // 更新播放状态样式
-        this.updatePlayingState(this.playlist.children[index]);
-
-        // 保存播放状态
-        this.savePlayerState(itemText, index);
-      }
-
-      // 处理播放列表点击事件
-      handlePlaylistClick(e) {
-        const target = e.target.closest('li'); // 使用closest更可靠地获取li元素
-        if (!target) return;
-
-        const index = Array.from(this.playlist.children).indexOf(target);
-
-        // 如果点击的是正在播放的项
-        if (target.classList.contains("playing")) {
-          if (this.audioPlayer.paused) {
-            // 如果当前是暂停状态，继续播放
-            this.audioPlayer.play();
-          } else {
-            // 如果当前是播放状态，暂停
-            this.audioPlayer.pause();
-          }
-        } else {
-          // 如果点击的是其他项，播放新的音频
-          this.playAudio(target.textContent, index);
-        }
-      }
-
-      // 创建列表项
-      createListItem(item) {
-        const li = document.createElement("li");
-        li.textContent = item;
-
-        // 添加播放动画图标
-        const playingIcon = document.createElement("div");
-        playingIcon.className = "playing-icon";
-        for (let i = 0; i < 3; i++) {
-          const span = document.createElement("span");
-          playingIcon.appendChild(span);
-        }
-        li.appendChild(playingIcon);
-
-        // 添加三角形播放图标
-        const playIcon = document.createElement("div");
-        playIcon.className = "play-icon";
-        li.appendChild(playIcon);
-
-        return li;
-      }
-
-      // 处理分享功能
-      handleShare() {
-        const playingItem = this.playlist.querySelector(".playing");
-        if (playingItem) {
-          const index = Array.from(this.playlist.children).indexOf(playingItem);
-          const shareUrl = `${window.location.origin}${window.location.pathname}?id=${index}`;
-          
-          // 复制链接到剪贴板
-          navigator.clipboard.writeText(shareUrl).then(() => {
-            alert('链接已复制到剪贴板: ' + shareUrl);
-          }).catch(err => {
-            console.error('复制失败:', err);
-          });
-        }
-      }
-
-      // 检查URL参数并处理分享链接
-      handleSharedUrl() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const sharedId = urlParams.get('id');
-        
-        if (sharedId !== null) {
-          const index = parseInt(sharedId);
-          const items = Array.from(this.playlist.children);
-          if (index >= 0 && index < items.length) {
-            this.playAudio(items[index].textContent, index);
-            this.scrollToPlaying();
-            return true;
-          }
-        }
-        return false;
-      }
-
-      // 修改初始化播放列表方法
-      async initPlaylist() {
-        try {
-          const response = await fetch("guolunList.json", {
-            cache: "no-cache"
+        updatePlayingState(playingLi) {
+          // 移除所有正在播放的状态
+          const playingItems = this.playlist.querySelectorAll(".playing");
+          playingItems.forEach((item) => {
+            item.classList.remove("playing");
+            item.classList.remove("paused");
           });
 
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-
-          const data = await response.json();
-
-          const fragment = document.createDocumentFragment();
-          data.forEach((item) => {
-            const li = this.createListItem(item);
-            fragment.appendChild(li);
-          });
-
-          this.playlist.appendChild(fragment);
-
-          // 先检查是否是分享链接
-          const isSharedUrl = this.handleSharedUrl();
-          // 如果不是分享链接，则恢复上次播放状态
-          if (!isSharedUrl) {
-            this.restorePlayerState(data);
-          }
-        } catch (error) {
-          console.error("加载播放列表失败:", error);
-          this.showError("加载播放列表失败，请刷新页面重试");
-        }
-      }
-
-      // 恢复播放器状态
-      restorePlayerState(data) {
-        const savedState = localStorage.getItem(this.STORAGE_KEY);
-        if (savedState) {
-          try {
-            const state = JSON.parse(savedState);
-            this.playAudio(state.title, state.index, state.currentTime);
-            this.scrollToPlaying();
-          } catch (e) {
-            console.error("恢复播放状态失败:", e);
-            // 如果恢复失败，播放第一个音频
-            if (data.length > 0) {
-              this.playAudio(data[0], 0);
+          // 添加当前播放项的状态
+          if (playingLi) {
+            playingLi.classList.add("playing");
+            if (this.audioPlayer.paused) {
+              playingLi.classList.add("paused");
             }
           }
-        } else if (data.length > 0) {
-          // 首次访问时播放第一个音频
-          this.playAudio(data[0], 0);
+        }
+
+        // 更新播放/暂停状态
+        updatePlayPauseState() {
+          const playingItem = this.playlist.querySelector(".playing");
+          if (playingItem) {
+            playingItem.classList.toggle("paused", this.audioPlayer.paused);
+          }
+        }
+
+        // 保存播放状态到localStorage
+        savePlayerState(itemText, itemVal, index) {
+          const state = {
+            title: itemText,
+            val: itemVal,
+            index: index,
+            currentTime: this.audioPlayer.currentTime,
+          };
+          localStorage.setItem(this.STORAGE_KEY, JSON.stringify(state));
+        }
+
+        // 保存当前播放状态
+        saveCurrentState() {
+          const playingItem = this.playlist.querySelector(".playing");
+          if (playingItem) {
+            const index = Array.from(this.playlist.children).indexOf(playingItem);
+            this.savePlayerState(playingItem.textContent, playingItem.dataset.val, index);
+          }
+        }
+
+        // 播放音频的函数
+        playAudio(itemText, itemVal, index, startTime = 0) {
+          const path = this.getPath(index);
+          this.title.textContent = itemText;
+          this.audioPlayer.src = `https://jasonbai008.github.io/${path}/mp3/${itemVal}.mp3`;
+          this.audioPlayer.currentTime = startTime;
+          this.audioPlayer.play();
+
+          // 更新播放状态样式
+          this.updatePlayingState(this.playlist.children[index]);
+
+          // 保存播放状态
+          this.savePlayerState(itemText, itemVal, index);
+        }
+
+        // 处理播放列表点击事件
+        handlePlaylistClick(e) {
+          const target = e.target.closest("li"); // 使用closest更可靠地获取li元素
+          if (!target) return;
+
+          const index = Array.from(this.playlist.children).indexOf(target);
+
+          // 如果点击的是正在播放的项
+          if (target.classList.contains("playing")) {
+            if (this.audioPlayer.paused) {
+              // 如果当前是暂停状态，继续播放
+              this.audioPlayer.play();
+            } else {
+              // 如果当前是播放状态，暂停
+              this.audioPlayer.pause();
+            }
+          } else {
+            // 如果点击的是其他项，播放新的音频
+            this.playAudio(target.textContent, target.dataset.val, index);
+          }
+        }
+
+        // 创建列表项
+        createListItem(item) {
+          const li = document.createElement("li");
+          // 使用item.label作为显示文本，item.val作为值
+          li.textContent = item.label;
+          // 存储原始值用于播放
+          li.dataset.val = item.val;
+
+          // 添加播放动画图标
+          const playingIcon = document.createElement("div");
+          playingIcon.className = "playing-icon";
+          for (let i = 0; i < 3; i++) {
+            const span = document.createElement("span");
+            playingIcon.appendChild(span);
+          }
+          li.appendChild(playingIcon);
+
+          // 添加三角形播放图标
+          const playIcon = document.createElement("div");
+          playIcon.className = "play-icon";
+          li.appendChild(playIcon);
+
+          return li;
+        }
+
+        // 处理分享功能
+        handleShare() {
+          const playingItem = this.playlist.querySelector(".playing");
+          if (playingItem) {
+            const index = Array.from(this.playlist.children).indexOf(playingItem);
+            const shareUrl = `${window.location.origin}${window.location.pathname}?id=${index}`;
+
+            // 复制链接到剪贴板
+            navigator.clipboard
+              .writeText(shareUrl)
+              .then(() => {
+                alert("链接已复制到剪贴板: " + shareUrl);
+              })
+              .catch((err) => {
+                console.error("复制失败:", err);
+              });
+          }
+        }
+
+        // 检查URL参数并处理分享链接
+        handleSharedUrl() {
+          const urlParams = new URLSearchParams(window.location.search);
+          const sharedId = urlParams.get("id");
+
+          if (sharedId !== null) {
+            const index = parseInt(sharedId);
+            const items = Array.from(this.playlist.children);
+            if (index >= 0 && index < items.length) {
+              const item = items[index];
+              this.playAudio(item.textContent, item.dataset.val, index);
+              this.scrollToPlaying();
+              return true;
+            }
+          }
+          return false;
+        }
+
+        // 修改初始化播放列表方法
+        async initPlaylist() {
+          try {
+            const response = await fetch("guolunList.json", {
+              cache: "no-cache",
+            });
+
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            const fragment = document.createDocumentFragment();
+            data.forEach((item) => {
+              const li = this.createListItem(item);
+              fragment.appendChild(li);
+            });
+
+            this.playlist.appendChild(fragment);
+
+            // 先检查是否是分享链接
+            const isSharedUrl = this.handleSharedUrl();
+            // 如果不是分享链接，则恢复上次播放状态
+            if (!isSharedUrl) {
+              this.restorePlayerState(data);
+            }
+          } catch (error) {
+            console.error("加载播放列表失败:", error);
+            this.showError("加载播放列表失败，请刷新页面重试");
+          }
+        }
+
+        // 恢复播放器状态
+        restorePlayerState(data) {
+          const savedState = localStorage.getItem(this.STORAGE_KEY);
+          if (savedState) {
+            try {
+              const state = JSON.parse(savedState);
+              // 查找对应的索引
+              let index = state.index;
+              // 确保索引有效
+              if (index >= 0 && index < data.length) {
+                this.playAudio(data[index].label, data[index].val, index, state.currentTime);
+                this.scrollToPlaying();
+              } else {
+                // 如果索引无效，播放第一个音频
+                this.playAudio(data[0].label, data[0].val, 0);
+              }
+            } catch (e) {
+              console.error("恢复播放状态失败:", e);
+              // 如果恢复失败，播放第一个音频
+              if (data.length > 0) {
+                this.playAudio(data[0].label, data[0].val, 0);
+              }
+            }
+          } else if (data.length > 0) {
+            // 首次访问时播放第一个音频
+            this.playAudio(data[0].label, data[0].val, 0);
+          }
+        }
+
+        // 显示错误信息
+        showError(message) {
+          const errorDiv = document.createElement("div");
+          errorDiv.style.cssText = "position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#f44336;color:white;padding:15px;border-radius:5px;";
+          errorDiv.textContent = message;
+          document.body.appendChild(errorDiv);
+          setTimeout(() => errorDiv.remove(), 3000);
         }
       }
 
-      // 显示错误信息
-      showError(message) {
-        const errorDiv = document.createElement('div');
-        errorDiv.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#f44336;color:white;padding:15px;border-radius:5px;';
-        errorDiv.textContent = message;
-        document.body.appendChild(errorDiv);
-        setTimeout(() => errorDiv.remove(), 3000);
-      }
-    }
-
-    // 初始化应用
-    document.addEventListener('DOMContentLoaded', () => {
-      const audioManager = new AudioManager();
-      audioManager.initPlaylist();
-    });
-  </script>
-</body>
-
+      // 初始化应用
+      document.addEventListener("DOMContentLoaded", () => {
+        const audioManager = new AudioManager();
+        audioManager.initPlaylist();
+      });
+    </script>
+  </body>
 </html>
